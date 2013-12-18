@@ -53,15 +53,29 @@ class Connection {
      * @param array this optional associative array will be used as url-encoded POST content.
      * @return array JSON response
      */
-    public function query_api($path, array $data = null) {
-        $data = is_null($data) ? "" : http_build_query($data);
+    public function query_api($path, $method = "POST", $data = null) {
+    	
+		$content_type = "application/x-www-form-urlencoded";
+		
+		if( is_null($data) )
+		{
+			$data = "";
+		}
+		else if( is_array($data) )
+		{
+			$data = http_build_query($data);
+		}
+		else
+		{
+			$content_type = "application/json";
+		}
 
         $headers = array("Authorization"  => "Basic ".base64_encode($this->client_id.":".$this->client_secret),
-                         "Content-Type"   => "application/x-www-form-urlencoded",
+                         "Content-Type"   => $content_type,
                          "Content-Length" => strlen($data));
 
         $request = new HttpsRequest();
-        return $request->request($path, $data, "POST", $headers);
+        return $request->request($path, $data, $method, $headers);
     }
 
     /**
