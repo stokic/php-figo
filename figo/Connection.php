@@ -73,7 +73,9 @@ class Connection {
         $headers = array("Authorization"  => "Basic ".base64_encode($this->client_id.":".$this->client_secret),
                          "Content-Type"   => $content_type,
                          "Content-Length" => strlen($data));
-
+		
+		print_r($headers);
+		
         $request = new HttpsRequest();
         return $request->request($path, $data, $method, $headers);
     }
