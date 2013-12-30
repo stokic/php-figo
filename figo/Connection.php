@@ -74,8 +74,6 @@ class Connection {
                          "Content-Type"   => $content_type,
                          "Content-Length" => strlen($data));
 		
-		print_r($headers);
-		
         $request = new HttpsRequest();
         return $request->request($path, $data, $method, $headers);
     }
