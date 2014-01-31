@@ -41,10 +41,10 @@ class Exception extends \Exception {
      * @param string the error code
      * @param string the error description
      */
-    public function __construct($error, $error_description) {
+    public function __construct($error, $error_description, $code = 0) {
         $this->error = $error;
         $this->error_description = $error_description;
-        parent::__construct($error_description);
+        parent::__construct($error_description, $code);
     }
 
     /**

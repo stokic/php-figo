@@ -91,7 +91,7 @@ class HttpsRequest {
             } else {
                 $obj = json_decode($body, true);
                 if (is_null($obj)) {
-                    throw new Exception("json_error", "Cannot decode JSON object.");
+                    throw new Exception("json_error", "Cannot decode JSON object.", $code);
                 } else {
                     return $obj;
                 }
@@ -99,22 +99,22 @@ class HttpsRequest {
         } elseif ($code === 400) {
              $err = json_decode($body, true);
              if (is_null($err)) {
-                 throw new Exception("json_error", "Cannot decode JSON object.");
+                 throw new Exception("json_error", "Cannot decode JSON object.", $code);
              } else {
-                 throw new Exception($err["error"], $err["error_description"]);
+                 throw new Exception($err["error"], $err["error_description"], $code);
              }
         } elseif ($code === 401) {
-            throw new Exception("unauthorized", "Missing, invalid or expired access token.");
+            throw new Exception("unauthorized", "Missing, invalid or expired access token.", $code);
         } elseif ($code === 403) {
-            throw new Exception("forbidden", "Insufficient permission.");
+            throw new Exception("forbidden", "Insufficient permission.", $code);
         } elseif ($code === 404) {
             return null;
         } elseif ($code === 405) {
-            throw new Exception("method_not_allowed", "Unexpected request method.");
+            throw new Exception("method_not_allowed", "Unexpected request method.", $code);
         } elseif ($code === 503) {
-            throw new Exception("service_unavailable", "Exceeded rate limit.");
+            throw new Exception("service_unavailable", "Exceeded rate limit.", $code);
         } else {
-            throw new Exception("internal_server_error", "We are very sorry, but something went wrong.");
+            throw new Exception("internal_server_error", "We are very sorry, but something went wrong.", $code);
         }
     }
 }
