@@ -80,12 +80,12 @@ class HttpsRequest {
 		// Debugging
 		if(Config::$DEBUG)
 		{
-			print_r(array(
+			\Log::info(print_r(array(
 				'method' => $method,
 				'path' => $path,
 				'headers' => $headers,
 				'data' => $data
-			));	
+			), true));	
 		}
 		
         // Read server response.
