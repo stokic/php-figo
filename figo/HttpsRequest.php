@@ -78,7 +78,7 @@ class HttpsRequest {
         fwrite($fp, $method." ".$path." HTTP/1.1\r\n".$header."\r\n".$data);
 		
 		// Debugging
-		if(Config::$DEBUG)
+		/*if(Config::$DEBUG)
 		{
 			\Log::info(print_r(array(
 				'method' => $method,
@@ -86,7 +86,7 @@ class HttpsRequest {
 				'headers' => $headers,
 				'data' => $data
 			), true));	
-		}
+		}*/
 		
         // Read server response.
         $response = stream_get_contents($fp);
