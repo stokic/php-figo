@@ -37,6 +37,8 @@ class Config {
                                               "AD:A0:E3:2B:1F:CE:E8:44:F2:83:BA:AE:E4:7D:F2:AD:44:48:7F:1E",
 											  "2A:B2:8B:83:78:B9:D2:F3:A0:03:0B:14:D1:0D:15:61:66:73:FF:B7",
 											  "E0:46:84:06:D0:1B:0B:6E:3D:3F:7F:A4:F5:D7:32:C2:56:BA:2F:0A");
+	/** @var bool enable/disable the verbose debug mode */							  
+	public static $DEBUG = TRUE;
 }
 
 ?>

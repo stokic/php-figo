@@ -78,12 +78,15 @@ class HttpsRequest {
         fwrite($fp, $method." ".$path." HTTP/1.1\r\n".$header."\r\n".$data);
 		
 		// Debugging
-		print_r(array(
-			'method' => $method,
-			'path' => $path,
-			'headers' => $headers,
-			'data' => $data
-		));
+		if(Config::$DEBUG)
+		{
+			print_r(array(
+				'method' => $method,
+				'path' => $path,
+				'headers' => $headers,
+				'data' => $data
+			));	
+		}
 		
         // Read server response.
         $response = stream_get_contents($fp);
